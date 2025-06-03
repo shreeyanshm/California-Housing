@@ -1,129 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>California Housing Price Prediction</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>California Housing Price Predictor</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9fafb;
+            color: #333;
+        }
+        h1 {
             text-align: center;
-            padding-top: 50px;
+            color: #2c3e50;
         }
-
         form {
-            background: white;
-            padding: 30px;
-            margin: auto;
-            width: 500px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
         }
-
         label {
             display: block;
-            margin-top: 15px;
-            font-weight: bold;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            color: #555;
         }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .input-group input[type="text"] {
-            width: 250px;
-            padding: 8px;
-            margin-left: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
+        input[type="number"] {
             width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
         }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        .result {
+        button {
             margin-top: 20px;
-            font-weight: bold;
-            color: green;
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result {
+            background: #dff0d8;
+            border: 1px solid #3c763d;
+            color: #3c763d;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-size: 1.25rem;
+            font-weight: 700;
             text-align: center;
+            margin-top: 15px;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+            text-align: center;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
+    <h1>California Housing Price Predictor</h1>
+    <form method="POST" action="/predict">
+        <label for="MedInc">Median Income (in tens of thousands):</label>
+        <input type="number" id="MedInc" name="MedInc" step="0.01" min="0" max="15" required />
 
-    <h2>California Housing Price Predictor</h2>
-    <form action="/predict" method="POST">
+        <label for="HouseAge">House Age (years):</label>
+        <input type="number" id="HouseAge" name="HouseAge" step="1" min="0" max="50" required />
 
-        <label>Median Income (1.5 - 15):</label>
-        <div class="input-group">
-            <span>MedInc:</span>
-            <input type="text" name="MedInc" placeholder="e.g., 8.3">
-        </div>
+        <label for="AveRooms">Average Rooms per Household:</label>
+        <input type="number" id="AveRooms" name="AveRooms" step="0.01" min="1" max="50" required />
 
-        <label>House Age (1 - 52):</label>
-        <div class="input-group">
-            <span>HouseAge:</span>
-            <input type="text" name="HouseAge" placeholder="e.g., 41">
-        </div>
+        <label for="AveBedrms">Average Bedrooms per Household:</label>
+        <input type="number" id="AveBedrms" name="AveBedrms" step="0.01" min="0" max="10" required />
 
-        <label>Average Rooms (1 - 15):</label>
-        <div class="input-group">
-            <span>AveRooms:</span>
-            <input type="text" name="AveRooms" placeholder="e.g., 6.9">
-        </div>
+        <label for="Population">Population of the Block:</label>
+        <input type="number" id="Population" name="Population" step="1" min="0" max="5000" required />
 
-        <label>Average Bedrooms (0.5 - 5):</label>
-        <div class="input-group">
-            <span>AveBedrms:</span>
-            <input type="text" name="AveBedrms" placeholder="e.g., 1.0">
-        </div>
+        <label for="AveOccup">Average Occupants per Household:</label>
+        <input type="number" id="AveOccup" name="AveOccup" step="0.01" min="0" max="10" required />
 
-        <label>Population (3 - 35000):</label>
-        <div class="input-group">
-            <span>Population:</span>
-            <input type="text" name="Population" placeholder="e.g., 322">
-        </div>
+        <label for="Latitude">Latitude (approximate):</label>
+        <input type="number" id="Latitude" name="Latitude" step="0.0001" min="32" max="42" required />
 
-        <label>Average Occupancy (0.5 - 10):</label>
-        <div class="input-group">
-            <span>AveOccup:</span>
-            <input type="text" name="AveOccup" placeholder="e.g., 2.5">
-        </div>
+        <label for="Longitude">Longitude (approximate):</label>
+        <input type="number" id="Longitude" name="Longitude" step="0.0001" min="-125" max="-114" required />
 
-        <label>Latitude (32 - 42):</label>
-        <div class="input-group">
-            <span>Latitude:</span>
-            <input type="text" name="Latitude" placeholder="e.g., 37.88">
-        </div>
-
-        <label>Longitude (-124 - -114):</label>
-        <div class="input-group">
-            <span>Longitude:</span>
-            <input type="text" name="Longitude" placeholder="e.g., -122.23">
-        </div>
-
-        <input type="submit" value="Predict">
-
+        <button type="submit">Predict Median House Price</button>
     </form>
 
     {% if prediction_text %}
-    <div class="result">{{ prediction_text }}</div>
+    <div class="result">
+        Predicted Median House Price: ${{ "%.2f"|format(prediction_text * 100000) }}
+    </div>
+    <div class="note">
+        *Price is estimated median value in USD.
+    </div>
     {% endif %}
-
 </body>
 </html>
