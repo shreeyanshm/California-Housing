@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>California Housing Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            margin: auto;
+            width: 500px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .input-group input[type="text"] {
+            width: 250px;
+            padding: 8px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>California Housing Price Predictor</h2>
+    <form action="/predict" method="POST">
+
+        <label>Median Income (1.5 - 15):</label>
+        <div class="input-group">
+            <span>MedInc:</span>
+            <input type="text" name="MedInc" placeholder="e.g., 8.3">
+        </div>
+
+        <label>House Age (1 - 52):</label>
+        <div class="input-group">
+            <span>HouseAge:</span>
+            <input type="text" name="HouseAge" placeholder="e.g., 41">
+        </div>
+
+        <label>Average Rooms (1 - 15):</label>
+        <div class="input-group">
+            <span>AveRooms:</span>
+            <input type="text" name="AveRooms" placeholder="e.g., 6.9">
+        </div>
+
+        <label>Average Bedrooms (0.5 - 5):</label>
+        <div class="input-group">
+            <span>AveBedrms:</span>
+            <input type="text" name="AveBedrms" placeholder="e.g., 1.0">
+        </div>
+
+        <label>Population (3 - 35000):</label>
+        <div class="input-group">
+            <span>Population:</span>
+            <input type="text" name="Population" placeholder="e.g., 322">
+        </div>
+
+        <label>Average Occupancy (0.5 - 10):</label>
+        <div class="input-group">
+            <span>AveOccup:</span>
+            <input type="text" name="AveOccup" placeholder="e.g., 2.5">
+        </div>
+
+        <label>Latitude (32 - 42):</label>
+        <div class="input-group">
+            <span>Latitude:</span>
+            <input type="text" name="Latitude" placeholder="e.g., 37.88">
+        </div>
+
+        <label>Longitude (-124 - -114):</label>
+        <div class="input-group">
+            <span>Longitude:</span>
+            <input type="text" name="Longitude" placeholder="e.g., -122.23">
+        </div>
+
+        <input type="submit" value="Predict">
+
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+
+</body>
+</html>
