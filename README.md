@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)](https://www.python.org/)
 [![Dockerized](https://img.shields.io/badge/Dockerized-Yes-blue?logo=docker)](https://www.docker.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-blue?logo=github)](https://github.com/shreeyanshm/California-Housing/actions)
-[![Deployed](https://img.shields.io/badge/Deployed-Render-green?logo=render)](https://california-housing.onrender.com)
+[![Deployed](https://img.shields.io/badge/Deployed-Render-green?logo=render)](https://california-housing-73yr.onrender.com/)
 
 > A complete end-to-end ML project to predict California housing prices using linear regression. Built with MLOps practices including Docker, FastAPI, and GitHub Actions for CI/CD.
 
@@ -13,7 +13,7 @@
 ## 🚀 Demo
 
 Try the deployed API (if available):  
-**[🔗 Live Endpoint →](https://california-housing.onrender.com)**
+**[🔗 Live Endpoint →](https://california-housing-73yr.onrender.com/)**
 
 Example:  
 GET /predict?MedInc=8.3&HouseAge=32&AveRooms=6.1&AveBedrms=1.1&Population=1200&AveOccup=2.8&Latitude=36.4&Longitude=-120.3
